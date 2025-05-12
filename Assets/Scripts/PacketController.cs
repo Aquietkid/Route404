@@ -5,15 +5,20 @@ using System.Collections.Generic;
 public class PacketController : MonoBehaviour
 {
     public static PacketController Instance;
-
     public float speed = 10f;
     public Transform currentRouter;
     private Transform nextRouter;
-
     private bool isMoving = false;
     private Dictionary<Transform, List<Transform>> routerConnections = new();
-
     void Awake() => Instance = this;
+
+
+    public bool IsPossibleNextDestination(Transform from, Transform to)
+    {
+        return routerConnections.ContainsKey(from) && routerConnections[from].Contains(to);
+    }
+
+
 
     public void SetRouterConnections(Dictionary<Transform, List<Transform>> connections)
     {
@@ -28,7 +33,6 @@ public class PacketController : MonoBehaviour
             nextRouter = dest;
         }
     }
-
 
     void Start()
     {
