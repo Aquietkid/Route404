@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
 
 public class ConnectionSpawner : MonoBehaviour
@@ -28,6 +28,7 @@ public class ConnectionSpawner : MonoBehaviour
         float distance = direction.magnitude;
 
         GameObject connection = Instantiate(connectionPrefab, midpoint, Quaternion.identity);
+        connection.tag = "Path";                
         connection.transform.up = direction.normalized;
         connection.transform.localScale = new Vector3(
             connection.transform.localScale.x,
