@@ -6,6 +6,8 @@ public class ConnectionSpawner : MonoBehaviour
     public GameObject connectionPrefab; // Assign the long cylinder prefab in the Inspector
     public List<TransformPair> connections; // Define object pairs in the Inspector
 
+    private Dictionary<Transform, List<Transform>> routerMap = new();
+
     [System.Serializable]
     public struct TransformPair
     {
@@ -19,6 +21,9 @@ public class ConnectionSpawner : MonoBehaviour
         {
             SpawnConnection(pair.start, pair.end);
         }
+
+        // Set the connection map for the packet
+        PacketController.Instance.SetRouterConnections(routerMap);
     }
 
     void SpawnConnection(Transform start, Transform end)
@@ -35,5 +40,18 @@ public class ConnectionSpawner : MonoBehaviour
             distance / 2f,
             connection.transform.localScale.z
         );
+
+        var collider = connection.AddComponent<BoxCollider>();
+        collider.isTrigger = true;
+        collider.size = new Vector3(0.2f, 1f, 0.2f); // Adjust if needed
+        collider.center = Vector3.zero;
+
+        var chooser = connection.AddComponent<ConnectionChooser>();
+        chooser.SetDestination(end);
+
+        // Track router connections
+        if (!routerMap.ContainsKey(start)) routerMap[start] = new List<Transform>();
+        routerMap[start].Add(end);
     }
+
 }
