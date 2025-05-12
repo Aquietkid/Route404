@@ -9,10 +9,19 @@ public class ConnectionChooser : MonoBehaviour
 
     public void OnClicked()
     {
-        if (destinationRouter != null)
+        if (destinationRouter != null && PacketController.Instance != null)
         {
-            Debug.Log($"Connection clicked. Routing to: {destinationRouter.name}");
-            PacketController.Instance.SetNextDestination(destinationRouter);
+            var current = PacketController.Instance.currentRouter;
+
+            if (PacketController.Instance.IsPossibleNextDestination(current, destinationRouter))
+            {
+                PacketController.Instance.SetNextDestination(destinationRouter);
+                Debug.Log($"Valid destination: {destinationRouter.name}");
+            }
+            else
+            {
+                Debug.Log($"Invalid destination from {current?.name} to {destinationRouter.name}");
+            }
         }
     }
 }
