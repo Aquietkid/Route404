@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class Interceptor : MonoBehaviour
 {
-    public float health = 100f;
-    public float damagePerHit = 50f;
-
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider other)
     {
-        health -= damagePerHit;
-        if (health <= 0f)
-            Destroy(gameObject);
+        if (other.CompareTag("Player"))
+        {
+            HealthManager.Instance.ApplyInstantDeath();
+            Debug.Log("Interceptor triggered by Player!");
+        }
     }
+
 }

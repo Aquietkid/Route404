@@ -249,6 +249,7 @@ GameObject:
   - component: {fileID: 8926211134871112369}
   - component: {fileID: -5331142912227107785}
   - component: {fileID: 4562267854266890502}
+  - component: {fileID: 7189427442224808165}
   m_Layer: 0
   m_Name: Interceptor
   m_TagString: Untagged
@@ -369,6 +370,28 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 36
   m_CollisionDetection: 0
+--- !u!64 &7189427442224808165
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3442035376595726660}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &3631620796558273419
 GameObject:
   m_ObjectHideFlags: 0
